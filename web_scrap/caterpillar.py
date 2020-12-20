@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# A web-scrapping and container class for data related to the sale of Caterpillar products
+#TODO:
+    #1.Implement DB logic to store relevant scrapped data
+    #2.Migrate images_urls to a external file
+    #3.Embed the generated offers map directly into the web app, avoid writting map.html
 
 import numpy as np
 import plotly.graph_objects as go
