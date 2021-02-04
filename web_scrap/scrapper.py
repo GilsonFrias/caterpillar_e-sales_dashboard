@@ -81,7 +81,8 @@ class scrapper:
             date_p = soup.find("p", class_="post__date")
             location_ul = soup.find("ul", class_="post__category-and-location")
             if price_header:
-                currency, price = price_header.text.split(" ")
+                if len(price_header.text.split(" "))==2:
+                    currency, price = price_header.text.split(" ")
             if description_header:
                 description = description_header.text
             if date_p:

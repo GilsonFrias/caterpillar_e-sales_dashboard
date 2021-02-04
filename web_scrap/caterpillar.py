@@ -32,6 +32,7 @@ class CatDataHandler:
                 '320C':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.kAzYXm-G5qVSlxn2p7gVpgHaEK%26pid%3DApi&f=1',
                 '320DL':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.GGYXPpcBW8ES0uzhfARsCgHaEK%26pid%3DApi&f=1',
                 '416C':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FwJX8FNPKABU%2Fmaxresdefault.jpg&f=1&nofb=1',
+                '416':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FwJX8FNPKABU%2Fmaxresdefault.jpg&f=1&nofb=1',
                 '416E':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP._1Iwf4r8hazq78XP5ssXZwHaEK%26pid%3DApi&f=1',
                 '420':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.FWnSD9JVIAZ6f2Q5NdPZqwHaEK%26o%3D6%26pid%3DApi&f=1',
                 '420D':'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.GDEipJ01DG0jVxu-JINPDAHaEK%26pid%3DApi&f=1',
@@ -132,10 +133,12 @@ class CatDataHandler:
             self.today_date = today_date
 
             #Convert prices from USD to DOP
-            prices = [int(price.replace(",", "")) for price in prices] #xx,xxx,xxx -> xxxxxxxx
-            
             prices_dop = []
             for currency, price in zip(currencies, prices):
+                if price:
+                    price = int(price.replace(",", ""))
+                else:
+                    price = 0
                 if "U" in currency:
                     prices_dop.append(price*exc_rate)
                 else:
